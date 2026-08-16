@@ -235,14 +235,14 @@ void rurima_docker(int argc, char **_Nonnull argv)
 	if (architecture == NULL) {
 		architecture = rurima_docker_get_host_arch();
 	}
-	if (strcmp(mirror, rurima_global_config.docker_mirror) != 0) {
+	if (mirror && strcmp(mirror, rurima_global_config.docker_mirror) != 0) {
 		if (!quiet) {
 			rurima_warning("{yellow}You are using unofficial mirror:{cyan} %s\n", mirror);
 			rurima_warning("{yellow}You use it as your own risk.\n")
 		}
 	}
 	// For ghcr.io, we enable fallback mode by default.
-	if (strncmp(mirror, "ghcr.io", 7) == 0) {
+	if (mirror && strncmp(mirror, "ghcr.io", 7) == 0) {
 		rurima_warning("{yellow}ghcr.io detected, enabling fallback mode by default for compatibility.\n");
 		fallback = true;
 	}
